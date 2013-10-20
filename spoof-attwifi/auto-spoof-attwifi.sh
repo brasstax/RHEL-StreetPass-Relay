@@ -45,12 +45,12 @@ if [[ "$line_num" -gt "$last_num" ]] || [[ "$last_num" -lt "$line_num" ]]; then
 	exit 1
 fi
 # to account for the description line in the first line
-if [[ "$line_num" -le 1 ]]; then
-	line_num=2
-	if [[ $last_num -lt $line_num ]]; then
-		last_num=2
-	fi
-fi
+#if [[ "$line_num" -le 1 ]]; then
+#	line_num=2
+#	if [[ $last_num -lt $line_num ]]; then
+#		last_num=2
+#	fi
+#fi
 line=$line_num
 echo "MAC addresses used:"
 while [[ $line -le $last_num ]]

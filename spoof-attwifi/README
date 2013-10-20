@@ -11,7 +11,9 @@ dnsmasq.  This will allow you to run a DNS server in your session, and lets you 
 recommended: tmux.  It'll basically keep a terminal session running for you so you can come back any time, and if you lose your ssh session, you won't completely lose any running processes.
 
 Usage:
-The macs.csv file has a bunch of MAC addresses pre-populated.  Fill it with more as you see fit.
+The macs.csv file has a bunch of MAC addresses pre-populated.  Fill it with more as you see fit.  When filling out macs.csv, the format goes like this:
+
+MAC-ADDRESS,description
 
 First, change auto-spoof-attwifi.sh to executable, if you haven't:
 
