@@ -33,24 +33,17 @@ last_num=$3
 
 # check validity of line number specified
 if ! [[ "$line_num" =~ ^[0-9]+$ ]] || [[ "$line_num" -eq 0 ]] || [[ "$line_num" -gt `wc -l $csv_file | cut -d ' ' -f1` ]] ; then
-	echo "invalid first line number"
-	exit 1
+	echo "invalid first line number, assuming first number of line"
+	line_num=1
 fi
 if ! [[ "$last_num" =~ ^[0-9]+$ ]] || [[ "$last_num" -eq 0 ]] || [[ "$last_num" -gt `wc -l $csv_file | cut -d ' ' -f1` ]] ; then
-        echo "invalid last line number"
-        exit 1
+        echo "invalid last line number, assuming last line number"
+		last_num=`wc -l $csv_file | cut -f1 -d ' '`
 fi
 if [[ "$line_num" -gt "$last_num" ]] || [[ "$last_num" -lt "$line_num" ]]; then
 	echo "Invalid range from $line_num to $last_num."
 	exit 1
 fi
-# to account for the description line in the first line
-#if [[ "$line_num" -le 1 ]]; then
-#	line_num=2
-#	if [[ $last_num -lt $line_num ]]; then
-#		last_num=2
-#	fi
-#fi
 line=$line_num
 echo "MAC addresses used:"
 while [[ $line -le $last_num ]]
