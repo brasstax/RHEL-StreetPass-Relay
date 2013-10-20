@@ -1,0 +1,58 @@
+SPOOF-ATTWIFI - Pidora version
+For StreetPasses
+By Algernop Krieger (gbatemp)
+
+Tested on Pidora 17
+Hardware: Raspberry Pi Model B
+
+Pre-requisites:
+hostapd.  If you have a non-edimax wireless dongle, you can "yum install hostapd."  If you're using an edimax wireless dongle, you'll want to search google for "hostapd edimax".  You'll know if it's an edimax dongle just by looking at it.
+dnsmasq.  This will allow you to run a DNS server in your session, and lets you use the dnsmasq.conf file to translate Nintendo's DNS names into IP addresses they use.
+recommended: tmux.  It'll basically keep a terminal session running for you so you can come back any time, and if you lose your ssh session, you won't completely lose any running processes.
+
+Usage:
+The macs.csv file has a bunch of MAC addresses pre-populated.  Fill it with more as you see fit.
+
+First, change auto-spoof-attwifi.sh to executable, if you haven't:
+
+chmod a+x auto-spoof-attiwifi.sh.
+
+To run the script, do this as root:
+
+./auto-spoof-attwifi.sh
+
+This will give you usage on how to use the spoofer.  Included is an example macs.csv file.
+
+As an example, if you want to spoof the first MAC address, as root:
+
+./auto-spoof-attwifi.sh macs.csv 1 1
+
+This will take down wlan0, change its MAC address, then bring it back up.
+
+If you want to spoof more addresses:
+
+./auto-spoof-attwifi.sh macs.csv 1 10
+
+Or whatever range you'd like.  I suggest a max range of ten numbers, since Streetpass can only hold ten passes before you have to process them.
+
+
+Close your 3DS and watch your screen.
+You should see your 3DS connect, and your 3DS' StreetPass should glow.
+Once you see it disconnect, hit ctrl-C to close hostapd, then
+rerun spoof-attwifi.sh with the next line number you want.
+
+Note that this will create an open unsecured AP!  If you're worried about security, run the ./iptables-init.sh script, but keep in mind this isn't perfect; what it does is that it kills your current IPtables settings, then only allows access to Nintendo's stuff outbound.  I admit I don't know what I'm doing with this as much as I should be, so if in doubt, reboot the Pi if it's not to your taste.
+
+QUESTIONS?
+Reply to the thread:
+http://gbatemp.net/threads/has-anyone-attempted-to-abuse-the-nintendo-zone-streetpass-relay.352410
+
+Usual disclaimers abound:  This might fuck up your hardware, Nintendo might
+crack down on you, I am not liable for anything that happens, don't use if
+you're uncomfortable with any of this, no guarantees, blah blah blah.  Also, I may not get
+back to you, as I'm admittedly still relatively new to Linux.  If you want to
+edit this or whatever, go nuts.
+
+Hope to tag you!
+
+-Algernop Krieger
